@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <th>Id</th>
+            <th>Avatar</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of asyncUsers | async  | paginate: { id:'userserver', itemsPerPage: perPage, currentPage: page,
+                totalItems: totalItems }">
+                <td>{{ user.id }}</td>
+                <td><img [src]="avatar}}" alt=""></td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="pageChanged($event)" id="userserver"></pagination-controls>
+</div>

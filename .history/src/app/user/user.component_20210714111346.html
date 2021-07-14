@@ -1,0 +1,13 @@
+<p>user works!</p>
+<input type="number" [(ngModel)]="phonenumber" />
+<button (click)="getPermutations()">Search</button>
+<div *ngIf="permutations.length">
+    <ul class="meal-list">
+        <li *ngFor="let permutation of permutations | paginate: { itemsPerPage: 10, currentPage: page }">
+            {{ permutation }}
+        </li>
+    </ul>
+    <div class="has-text-centered">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
