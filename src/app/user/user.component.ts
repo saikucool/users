@@ -18,10 +18,10 @@ export class UserComponent implements OnInit {
   constructor(private http: AppService) { }
 
   ngOnInit(): void {
-    this.getUsers(this.page);
+    this.getUsers();
   }
-  getUsers(pageNumber: any) {
-    this.asyncUsers = this.serverCall(pageNumber).pipe(tap(res => {
+  getUsers() {
+    this.asyncUsers = this.serverCall(this.page).pipe(tap(res => {
       const data = res as any;
       this.users = data.data;
       this.perPage = data.per_page;
@@ -32,7 +32,8 @@ export class UserComponent implements OnInit {
     return this.http.getJson(page)
   }
   pageChanged(event) {
-    this.getUsers(event);
+    this.page = event;
+    this.getUsers();
   }
 }
 

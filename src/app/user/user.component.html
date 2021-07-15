@@ -1,20 +1,23 @@
 <div class="container-fluid">
-    <table class="table table-bordered table-striped">
-        <thead>
+    <table class="mt-3 table table-bordered table-striped">
+        <thead class="thead-dark">
             <th>Id</th>
             <th>Avatar</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>Name</th>
             <th>Email</th>
         </thead>
         <tbody>
-            <tr *ngFor="let user of asyncUsers | async  | paginate: { id:'userserver', itemsPerPage: perPage, currentPage: page,
-                totalItems: totalItems }">
+            <tr [class.table-success]="odd" [class.table-primary]="even" *ngFor="let user of asyncUsers | async  | paginate: { id:'userserver', 
+            itemsPerPage: perPage, currentPage: page,
+                totalItems: totalItems };let odd=odd;let even=even;">
                 <td>{{ user.id }}</td>
                 <td><img width="50" height="50" [src]="user.avatar" alt=""></td>
-                <td>{{ user.first_name }}</td>
-                <td>{{ user.last_name }}</td>
-                <td>{{ user.email }}</td>
+                <td><span class="fa-stack fa-lg">
+                        <i class="fa fa-user fa-stack-1x"></i>
+                    </span>{{ user.first_name }} {{ user.last_name }}</td>
+                <td><span class="fa-stack fa-lg">
+                        <i class="fa fa-envelope fa-stack-1x"></i>
+                    </span>{{ user.email }}</td>
             </tr>
         </tbody>
     </table>
